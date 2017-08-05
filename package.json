@@ -2,7 +2,8 @@
   "name": "base-uikit",
   "version": "1.0.0",
   "description": "Simple landing page made with React, UiKit and TypeScript",
-  "main": "src/main.ts",
+  "main": "src/main.jsx",
+  "repository": "https://github.com/marco-souza/uikit-react.git",
   "author": "Marco Antonio <ma.souza.junior@gmail.com>",
   "license": "MIT",
   "scripts": {
