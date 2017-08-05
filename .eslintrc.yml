@@ -5,9 +5,9 @@ env:
 extends: 'eslint:recommended'
 parser: 'babel-eslint'
 parserOptions:
-    #ecmaFeatures:
-    #    experimentalObjectRestSpread: true
-    #    jsx: true
+    ecmaFeatures:
+       experimentalObjectRestSpread: true
+       jsx: true
     sourceType: module
 plugins:
     - react
@@ -24,7 +24,9 @@ rules:
     quotes:
         - error
         - double
-    
+    semi:
+        - error
+        - never
     no-console:
         - off
     no-unused-vars:

@@ -4,7 +4,8 @@ const
     path                = require("path"),
     CleanWebpackPlugin  = require("clean-webpack-plugin"),
     WriteFilePlugin     = require("write-file-webpack-plugin"),
-    HtmlWebpackPlugin   = require("html-webpack-plugin")
+    HtmlWebpackPlugin   = require("html-webpack-plugin"),
+    FlowtypePlugin      = require("flowtype-loader/plugin")
 
 module.exports = {
     entry: {
@@ -73,7 +74,13 @@ module.exports = {
             {
                 test: /.jsx?$/,
                 enforce: "pre",
-                exclude: /node_modules|lodash|config/,
+                exclude: /node_modules|config/,
+                use: [{ loader: "flowtype-loader" }]
+            },
+            {
+                test: /.jsx?$/,
+                enforce: "pre",
+                exclude: /node_modules|config/,
                 use: [
                     {
                         loader: "eslint-loader", options: {
@@ -88,7 +95,7 @@ module.exports = {
                 use: [
                     {
                         loader: "babel-loader", options: {
-                            presets: ["latest", "react"],
+                            presets: ["latest", "react", "flow"],
                             plugins: [
                                 "autobind-class-methods",
                                 "transform-class-properties",
@@ -133,7 +140,10 @@ module.exports = {
 
     // Plugins
     plugins: [
-        new HtmlWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            title: appConfig.info.title
+        }),
+        new FlowtypePlugin(),
         new CleanWebpackPlugin(appConfig.src.dest),
         new WriteFilePlugin(),
     ],

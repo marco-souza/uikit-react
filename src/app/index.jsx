@@ -1,30 +1,30 @@
+// @flow
 import React from "react"
-import PropTypes from "prop-types";
 
-const
-    defaultState = {
-        name: "Hakuna Matata"
-    },
-    defaultProps = {
-        a: ""
-    },
-    defaultPropTypes = {
-        title: PropTypes.string
-    }
+// Define Structure of props and state
+type State = { name: string }
+type Props = { title: string }
 
 /**
  * Create the Root app component
  */
 class Component extends React.Component {
-    
-    // Define properties
-    propTypes   = defaultPropTypes
-    state       = defaultState
-    props       = this.props || defaultProps
+
+    state: State = { name: "3" }
+    props: Props
+    static defaultProps = {
+        title: "No Title"
+    }
+
+    componentDidMount() {
+        console.log("state name: ", this.state.name)
+        this.setState({name: this.props.title})
+    }
 
     render() {
         return(
             <div>
+                <h1>{this.props.title}</h1>
                 <h1>{this.state.name}</h1>
             </div>
         )
